@@ -19,3 +19,10 @@ export default class ModernTabViewExample extends Component {
     }
 };
 ```
+## Integration with React Native Navigation
+```js
+<ModernTabView index={0}>
+    <AuthScreen navigator={this.props.navigator} />
+    <RootScreen />
+</ModernTabView>
+```
