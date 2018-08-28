@@ -31,7 +31,7 @@ class ModernTabView extends Component {
         return toArray(children).reduce((scene, child) => {
             const { type: { displayName }} = child;
             return Object.assign({}, scene, { 
-                [displayName]: () => cloneElement(child, { navigator }) 
+                [displayName]: () => cloneElement(child, child.props) 
             });
         }, {});
     }
@@ -40,25 +40,19 @@ class ModernTabView extends Component {
             this.props.onSwitch(this.state.routes[index]);
         });
     }    
-    renderTabBar = (props) => {
-        if (this.props.hideTabBar) return null;
-        return <TabBar {...props} />
-    }
     render() {
         if (this.state.routes.length === 0) return <View />;
         return <TabView 
-            swipeEnabled={false}
             navigationState={this.state}
             onIndexChange={this.onIndexChange}
             renderScene={SceneMap(this.state.scene)}
-            renderTabBar={this.renderTabBar}
+            {...this.props}
         />
     }
 };
 
 ModernTabView.defaultProps = {
     index: 0,
-    hideTabBar: true,
     onSwitch: (tab) => console.log('ModernTabView.onSwitch', tab),
 };
 
