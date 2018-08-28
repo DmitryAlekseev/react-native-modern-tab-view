@@ -27,7 +27,7 @@ class ModernTabView extends Component {
     }
     prepareScene = () => {
         const { Children: { toArray }, cloneElement } = React;
-        const { navigator, children } = this.props;
+        const { children } = this.props;
         return toArray(children).reduce((scene, child) => {
             const { type: { displayName }} = child;
             return Object.assign({}, scene, { 
